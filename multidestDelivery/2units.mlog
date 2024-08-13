@@ -1,0 +1,357 @@
+print "Delvery logic by AlphaGamer"
+print "version 0.1, build 32842"
+print "2 units version."
+print "MAX constant can be used is settings."
+set MAX 4e20
+print "Unit type to use. Will be used if useSorterSelector null."
+print "Naval units and dagger branch does not work."
+print "Crawler, flare, mono, nova brances works fine."
+print "Set to null if you want to use only selector."
+set utype @flare
+print "Minimum amount of links."
+set minLinks 2
+print "maximum time to bind unit in seconds. 0.2-2 recomended"
+set maxBindTimeSec 1
+print "Resource saver. Not recomended to set below 100."
+set minRes 200
+print "first prioItemsCount units can use priority system. Set 0 to off"
+set prioItemsCount 0
+print "Credit message. Must start with \n. Shorter = better."
+print "Example: \nScheme by (your name) & (someone's name)"
+set postMessage ""
+print "Set to conected sorter's name to use as utype selector"
+set useSorterSelector sorter1
+print "item type, destination, item limit, max idle time before unbind, sec."
+set item1 @copper
+set dest1 null
+set limit1 10
+set unbindTimeout1 10
+set item2 @copper
+set dest2 null
+set limit2 10
+set unbindTimeout2 10
+print "Please, do not touch this jump"
+jump 74 notEqual f1 null
+print "priority settings. set to null if you dont want to use item"
+set primary @copper
+set primaryMin 1000
+set secondary @copper
+set secondaryMin 1000
+set tertiary @copper
+set tertiaryMin 1000
+set quaternary @copper
+set quaternaryMin 1000
+set quinary @copper
+set quinaryMin 1000
+set senary @copper
+set senaryMin 1000
+print "[red]^------END OF SETTINGS------^"
+print "Also check custom code field at the end of code."
+print "Do not touch stuff below. Please."
+jump 0 lessThan @links minLinks
+set selectorErekir ""
+op mul temp @thisx 32842
+op sub f1 temp @thisy
+op mul f2 f1 2
+op floor prioItemsCount prioItemsCount 0
+op max prioItemsCount prioItemsCount 0
+op mul itemPryoMaxFlag f1 prioItemsCount
+jump 60 notEqual primary null
+set primaryMin -1
+jump 62 notEqual secondary null
+set secondaryMin -1
+jump 64 notEqual tertiary null
+set tertiaryMin -1
+jump 66 notEqual quaternary null
+set quaternaryMin -1
+jump 68 notEqual quinary null
+set quinaryMin -1
+jump 70 notEqual senary null
+set senaryMin -1
+op add unbindTime1 @second 60
+op add unbindTime2 @second 60
+jump 90 equal cachedLinks @links
+jump 22 always 0 0
+set cachedLinks @links
+ubind @merui
+jump 89 notEqual @unit null
+ubind @cleroi
+jump 89 notEqual @unit null
+ubind @disrupt
+jump 89 notEqual @unit null
+ubind @collaris
+jump 89 notEqual @unit null
+ubind @quell
+jump 89 notEqual @unit null
+ubind @anthicus
+jump 89 notEqual @unit null
+set selectorErekir ""
+jump 90 always 0 0
+set selectorErekir "=|=|=|=\n=|=\n"
+jump 152 equal useSorterSelector 0
+sensor cfg useSorterSelector @config
+jump 310 strictEqual cfg null
+jump 152 strictEqual cfg cachedCfg
+set cachedCfg cfg
+sensor id cfg @id
+op mul id id 2
+op add @counter @counter id
+set utype @mono
+jump 142 always 0 0
+set utype @poly
+jump 142 always 0 0
+set utype @mega
+jump 142 always 0 0
+set utype @quad
+jump 142 always 0 0
+set utype @flare
+jump 142 always 0 0
+set utype @zenith
+jump 142 always 0 0
+set utype @antumbra
+jump 142 always 0 0
+set utype @eclipse
+jump 142 always 0 0
+set utype @nova
+jump 142 always 0 0
+set utype @pulsar
+jump 142 always 0 0
+set utype @quasar
+jump 142 always 0 0
+set utype @vela
+jump 142 always 0 0
+set utype @atrax
+jump 142 always 0 0
+set utype @spiroct
+jump 142 always 0 0
+set utype @arkyid
+jump 142 always 0 0
+set utype @toxopid
+jump 142 always 0 0
+set utype @merui
+jump 142 always 0 0
+set utype @collaris
+jump 142 always 0 0
+set utype @disrupt
+jump 142 always 0 0
+set utype @cleroi
+jump 142 always 0 0
+set utype @quell
+jump 142 always 0 0
+set utype @anthicus
+jump 142 always 0 0
+printflush null
+jump 145 equal isIdle 0
+print "[blue][Info]: []No item requests.\n"
+print "Selected: [#AEC2F1]"
+print utype
+print "[]\n=|=|=|=\n=|=|=|=\n=|=|=|=\n=|=|=|=\n"
+print selectorErekir
+print "\nLogic by [#83]AlphaGamer[]"
+print postMessage
+printflush message1
+jump 156 equal switch1 null
+sensor enabled switch1 @enabled
+jump 156 strictEqual enabled 1
+jump 316 always 0 0
+jump 184 equal prioItemsCount 0
+sensor core.dead core @dead
+jump 183 equal core.dead 1
+sensor inCore core primary
+jump 163 lessThan inCore primaryMin
+set prioItem primary
+jump 184 always 0 0
+sensor inCore core secondary
+jump 167 lessThan inCore secondaryMin
+set prioItem secondary
+jump 184 always 0 0
+sensor inCore core tertiary
+jump 171 lessThan inCore tertiaryMin
+set prioItem tertiary
+jump 184 always 0 0
+sensor inCore core quaternary
+jump 175 lessThan inCore quaternaryMin
+set prioItem quaternary
+jump 184 always 0 0
+sensor inCore core quinary
+jump 179 lessThan inCore quinaryMin
+set prioItem quinary
+jump 184 always 0 0
+sensor inCore core senary
+jump 183 lessThan inCore senaryMin
+set prioItem senary
+jump 184 always 0 0
+set prioItem null
+set isIdle 1
+set uflag f1
+set item item1
+set dest dest1
+set limit limit1
+set unbindTimeout unbindTimeout1
+set workUnit u1
+set unbindTime unbindTime1
+op add return @counter 2
+jump 210 always 0 0
+set item1 item
+set unbindTime1 unbindTime
+set u1 workUnit
+set uflag f2
+set item item2
+set dest dest2
+set limit limit2
+set unbindTimeout unbindTimeout2
+set workUnit u2
+set unbindTime unbindTime2
+op add return @counter 2
+jump 210 always 0 0
+set item2 item
+set unbindTime2 unbindTime
+set u2 workUnit
+jump 349 always 0 0
+sensor dest.dead dest @dead
+jump 218 strictEqual dest.dead 0
+ubind workUnit
+ucontrol flag 0 0 0 0 0
+ulocate building core false _ coreX coreY _ core
+ucontrol pathfind coreX coreY 0 0 0
+set workUnit null
+set @counter return
+sensor workUnit.dead workUnit @dead
+jump 288 strictEqual workUnit.dead 1
+sensor workUnit.controller workUnit @controller
+jump 288 notEqual workUnit.controller @this
+sensor workUnit.flag workUnit @flag
+jump 238 strictEqual workUnit.flag uflag
+jump 288 always 0 0
+op add cantBindTimeout @second maxBindTimeSec
+jump 288 greaterThan @second cantBindTimeout
+ubind utype
+sensor @unit.flag @unit @flag
+jump 226 notEqual @unit.flag 0
+sensor @unit.dead @unit @dead
+jump 233 strictEqual @unit.dead 0
+set @counter return
+sensor itemCap @unit @itemCapacity
+ucontrol flag uflag 0 0 0 0
+ucontrol stop 0 0 0 0 0
+ucontrol boost 1 0 0 0 0
+set workUnit @unit
+ubind workUnit
+set isIdle 0
+sensor inUnit @unit @firstItem
+jump 258 equal inUnit null
+jump 279 notEqual inUnit item
+sensor dest.x dest @x
+sensor dest.y dest @y
+ucontrol pathfind dest.x dest.y 0 0 0
+sensor inDest dest item
+jump 250 lessThan inDest limit
+jump 299 lessThanEq unbindTime @second
+set @counter return
+op add unbindTime @second unbindTimeout
+ucontrol itemDrop dest 999 0 0 0
+sensor itemsCount @unit @totalItems
+jump 255 lessThanEq itemsCount 0
+set @counter return
+ulocate building core false _ coreX coreY _ core
+ucontrol pathfind coreX coreY 0 0 0
+set @counter return
+ulocate building core false _ coreX coreY _ core
+ucontrol pathfind coreX coreY 0 0 0
+jump 268 lessThanEq uflag itemPryoMaxFlag
+jump 264 notEqual item null
+jump 299 lessThanEq unbindTime @second
+set @counter return
+sensor inCore core item
+jump 270 greaterThanEq inCore minRes
+jump 299 lessThanEq unbindTime @second
+set @counter return
+jump 262 equal prioItem null
+set item prioItem
+op add unbindTime @second unbindTimeout
+ucontrol itemTake core item 99 0 0
+sensor itemsCount @unit @totalItems
+jump 275 greaterThanEq itemsCount itemCap
+op sub @counter return 1
+sensor dest.x dest @x
+sensor dest.y dest @y
+ucontrol pathfind dest.x dest.y 0 0 0
+op sub @counter return 1
+ulocate building core false _ coreX coreY _ core
+sensor inCore core inUnit
+sensor coreCap core @itemCapacity
+jump 286 greaterThanEq inCore coreCap
+ucontrol pathfind coreX coreY 0 0 0
+ucontrol itemDrop core 999 0 0 0
+set @counter return
+ucontrol itemDrop @air 999 0 0 0
+jump 258 always 0 0
+jump 291 greaterThan uflag itemPryoMaxFlag
+jump 291 notEqual prioItem null
+set @counter return
+sensor inDest dest item
+jump 294 lessThan inDest limit
+set @counter return
+sensor core.dead core @dead
+jump 225 equal core.dead 1
+sensor inCore core item
+jump 225 greaterThan inCore minRes
+set @counter return
+ulocate building core false _ coreX coreY _ core
+ucontrol pathfind coreX coreY 0 0 0
+ucontrol itemDrop core 999 0 0 0
+ucontrol within coreX coreY 4 isNearCore 0
+op add @counter @counter isNearCore
+set @counter return
+ucontrol itemDrop @air 999 0 0 0
+ucontrol flag 0 0 0 0 0
+ucontrol unbind 0 0 0 0 0
+set workUnit null
+set @counter return
+printflush null
+print "Select unit type.\n=|=|=|=\n=|=|=|=\n=|=|=|=\n=|=|=|=\n"
+print selectorErekir
+print "\nLogic by [#83]AlphaGamer[]"
+print postMessage
+printflush message1
+ubind u1
+jump 332 equal @unit null
+sensor flag @unit @flag
+jump 323 equal flag f1
+sensor ctrl @unit @controller
+jump 331 notEqual ctrl @this
+jump 331 notEqual flag 0
+ucontrol flag 0 0 0 0 0
+ulocate building core false _ coreX coreY _ core
+ucontrol pathfind coreX coreY 0 0 0
+ucontrol itemDrop core 999 0 0 0
+ucontrol within coreX coreY 4 isNearCore 0
+jump 332 equal isNearCore 0
+ucontrol itemDrop @air 999 0 0 0
+ucontrol unbind 0 0 0 0 0
+set u1 null
+ubind u2
+jump 348 equal @unit null
+sensor flag @unit @flag
+jump 339 equal flag f2
+sensor ctrl @unit @controller
+jump 347 notEqual ctrl @this
+jump 347 notEqual flag 0
+ucontrol flag 0 0 0 0 0
+ulocate building core false _ coreX coreY _ core
+ucontrol pathfind coreX coreY 0 0 0
+ucontrol itemDrop core 999 0 0 0
+ucontrol within coreX coreY 4 isNearCore 0
+jump 348 equal isNearCore 0
+ucontrol itemDrop @air 999 0 0 0
+ucontrol unbind 0 0 0 0 0
+set u2 null
+jump 72 always 0 0
+print "custom code field."
+print "Can be used to aim turrets, toggle projectors, or something else"
+print "[red]prohibed: stop, end, wait"
+print "[yellow]not recomended: jump backward, unit operations"
+print "[lime]your code starts here."
+print "[lime]your code ends here."
+jump 72 always 0 0
+print "github.com/ols45234/mlogProjects"
