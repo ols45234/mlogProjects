@@ -1,5 +1,5 @@
 print "Delvery logic by AlphaGamer"
-print "version 0.2, build 32858"
+print "version 0.2, build 32860"
 print "4 units version."
 print "MAX constant can be used is settings."
 set MAX 4e20
@@ -68,7 +68,7 @@ print "Also check custom code field at the end of code."
 print "Do not touch stuff below. Please."
 jump 0 lessThan @links minLinks
 set selectorErekir ""
-op mul temp @thisx 32858
+op mul temp @thisx 32860
 op sub f1 temp @thisy
 op mul f2 f1 2
 op mul f3 f1 3
@@ -418,10 +418,10 @@ jump 272 greaterThan inCore minRes
 set @counter return
 ulocate building core false _ coreX coreY _ core
 ucontrol pathfind coreX coreY 0 0 0
-ucontrol itemDrop core 999 0 0 0
-ucontrol within coreX coreY 4 isNearCore 0
+ucontrol within coreX coreY 2 isNearCore 0
 op add @counter @counter isNearCore
 set @counter return
+ucontrol itemDrop core 999 0 0 0
 ucontrol itemDrop @air 999 0 0 0
 ucontrol flag 0 0 0 0 0
 ucontrol unbind 0 0 0 0 0
