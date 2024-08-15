@@ -1,5 +1,5 @@
 print "Delvery logic by AlphaGamer"
-print "version 0.2, build 32863"
+print "version 0.2, build 32865"
 print "7 units version."
 print "MAX constant can be used is settings."
 set MAX 4e20
@@ -80,7 +80,7 @@ print "Also check custom code field at the end of code."
 print "Do not touch stuff below. Please."
 jump 0 lessThan @links minLinks
 set selectorErekir ""
-op mul temp @thisx 32863
+op mul temp @thisx 32865
 op sub f1 temp @thisy
 op mul f2 f1 2
 op mul f3 f1 3
@@ -133,7 +133,7 @@ jump 133 always 0 0
 set selectorErekir "=|=|=|=\n=|=\n"
 jump 193 equal useSorterSelector 0
 sensor cfg useSorterSelector @config
-jump 481 strictEqual cfg null
+jump 482 strictEqual cfg null
 jump 193 strictEqual cfg cachedCfg
 set cachedCfg cfg
 sensor id cfg @id
@@ -194,7 +194,7 @@ printflush message1
 jump 197 equal switch1 null
 sensor enabled switch1 @enabled
 jump 197 strictEqual enabled 1
-jump 487 always 0 0
+jump 488 always 0 0
 jump 225 equal prioItemsCount 0
 sensor core.dead core @dead
 jump 224 equal core.dead 1
@@ -307,7 +307,7 @@ jump 310 always 0 0
 set item7 item
 set unbindTime7 unbindTime
 set u7 workUnit
-jump 604 always 0 0
+jump 605 always 0 0
 sensor dest.dead dest @dead
 jump 318 strictEqual dest.dead 0
 ubind workUnit
@@ -317,14 +317,14 @@ ucontrol pathfind coreX coreY 0 0 0
 set workUnit null
 set @counter return
 sensor workUnit.dead workUnit @dead
-jump 459 strictEqual workUnit.dead 1
+jump 460 strictEqual workUnit.dead 1
 sensor workUnit.controller workUnit @controller
-jump 459 notEqual workUnit.controller @this
+jump 460 notEqual workUnit.controller @this
 sensor workUnit.flag workUnit @flag
-jump 409 strictEqual workUnit.flag uflag
-jump 459 always 0 0
+jump 410 strictEqual workUnit.flag uflag
+jump 460 always 0 0
 op add cantBindTimeout @second maxBindTimeSec
-jump 397 notEqual utype null
+jump 398 notEqual utype null
 ubind utype1
 sensor dead @unit @dead
 jump 337 equal dead 1
@@ -334,7 +334,7 @@ jump 337 greaterThanEq @second cantBindTimeout
 ubind utype1
 sensor @unit.flag @unit @flag
 jump 332 notEqual @unit.flag 0
-jump 404 always 0 0
+jump 405 always 0 0
 ubind utype2
 sensor dead @unit @dead
 jump 347 equal dead 1
@@ -344,7 +344,7 @@ jump 347 greaterThanEq @second cantBindTimeout
 ubind utype2
 sensor @unit.flag @unit @flag
 jump 342 notEqual @unit.flag 0
-jump 404 always 0 0
+jump 405 always 0 0
 ubind utype3
 sensor dead @unit @dead
 jump 357 equal dead 1
@@ -354,7 +354,7 @@ jump 357 greaterThanEq @second cantBindTimeout
 ubind utype3
 sensor @unit.flag @unit @flag
 jump 352 notEqual @unit.flag 0
-jump 404 always 0 0
+jump 405 always 0 0
 ubind utype4
 sensor dead @unit @dead
 jump 367 equal dead 1
@@ -364,7 +364,7 @@ jump 367 greaterThanEq @second cantBindTimeout
 ubind utype4
 sensor @unit.flag @unit @flag
 jump 362 notEqual @unit.flag 0
-jump 404 always 0 0
+jump 405 always 0 0
 ubind utype5
 sensor dead @unit @dead
 jump 377 equal dead 1
@@ -374,7 +374,7 @@ jump 377 greaterThanEq @second cantBindTimeout
 ubind utype5
 sensor @unit.flag @unit @flag
 jump 372 notEqual @unit.flag 0
-jump 404 always 0 0
+jump 405 always 0 0
 ubind utype6
 sensor dead @unit @dead
 jump 387 equal dead 1
@@ -384,7 +384,7 @@ jump 387 greaterThanEq @second cantBindTimeout
 ubind utype6
 sensor @unit.flag @unit @flag
 jump 382 notEqual @unit.flag 0
-jump 404 always 0 0
+jump 405 always 0 0
 ubind utype7
 sensor dead @unit @dead
 jump 397 equal dead 1
@@ -394,13 +394,14 @@ jump 397 greaterThanEq @second cantBindTimeout
 ubind utype7
 sensor @unit.flag @unit @flag
 jump 392 notEqual @unit.flag 0
-jump 404 always 0 0
-jump 459 greaterThan @second cantBindTimeout
+jump 405 always 0 0
+set @counter return
+jump 404 greaterThan @second cantBindTimeout
 ubind utype
 sensor @unit.flag @unit @flag
-jump 397 notEqual @unit.flag 0
+jump 398 notEqual @unit.flag 0
 sensor @unit.dead @unit @dead
-jump 404 strictEqual @unit.dead 0
+jump 405 strictEqual @unit.dead 0
 set @counter return
 sensor itemCap @unit @itemCapacity
 ucontrol flag uflag 0 0 0 0
@@ -410,39 +411,39 @@ set workUnit @unit
 ubind workUnit
 set isIdle 0
 sensor inUnit @unit @firstItem
-jump 429 equal inUnit null
-jump 450 notEqual inUnit item
+jump 430 equal inUnit null
+jump 451 notEqual inUnit item
 sensor dest.x dest @x
 sensor dest.y dest @y
 ucontrol pathfind dest.x dest.y 0 0 0
 sensor inDest dest item
-jump 421 lessThan inDest limit
-jump 470 lessThanEq unbindTime @second
+jump 422 lessThan inDest limit
+jump 471 lessThanEq unbindTime @second
 set @counter return
 op add unbindTime @second unbindTimeout
 ucontrol itemDrop dest 999 0 0 0
 sensor itemsCount @unit @totalItems
-jump 426 lessThanEq itemsCount 0
+jump 427 lessThanEq itemsCount 0
 set @counter return
 ulocate building core false _ coreX coreY _ core
 ucontrol pathfind coreX coreY 0 0 0
 set @counter return
 ulocate building core false _ coreX coreY _ core
 ucontrol pathfind coreX coreY 0 0 0
-jump 439 lessThanEq uflag itemPryoMaxFlag
-jump 435 notEqual item null
-jump 470 lessThanEq unbindTime @second
+jump 440 lessThanEq uflag itemPryoMaxFlag
+jump 436 notEqual item null
+jump 471 lessThanEq unbindTime @second
 set @counter return
 sensor inCore core item
-jump 441 greaterThanEq inCore minRes
-jump 470 lessThanEq unbindTime @second
+jump 442 greaterThanEq inCore minRes
+jump 471 lessThanEq unbindTime @second
 set @counter return
-jump 433 equal prioItem null
+jump 434 equal prioItem null
 set item prioItem
 op add unbindTime @second unbindTimeout
 ucontrol itemTake core item 999 0 0
 sensor itemsCount @unit @totalItems
-jump 446 greaterThanEq itemsCount itemCap
+jump 447 greaterThanEq itemsCount itemCap
 op sub @counter return 1
 sensor dest.x dest @x
 sensor dest.y dest @y
@@ -451,17 +452,17 @@ op sub @counter return 1
 ulocate building core false _ coreX coreY _ core
 sensor inCore core inUnit
 sensor coreCap core @itemCapacity
-jump 457 greaterThanEq inCore coreCap
+jump 458 greaterThanEq inCore coreCap
 ucontrol pathfind coreX coreY 0 0 0
 ucontrol itemDrop core 999 0 0 0
 set @counter return
 ucontrol itemDrop @air 999 0 0 0
-jump 429 always 0 0
-jump 462 greaterThan uflag itemPryoMaxFlag
-jump 462 notEqual prioItem null
+jump 430 always 0 0
+jump 463 greaterThan uflag itemPryoMaxFlag
+jump 463 notEqual prioItem null
 set @counter return
 sensor inDest dest item
-jump 465 lessThan inDest limit
+jump 466 lessThan inDest limit
 set @counter return
 sensor core.dead core @dead
 jump 325 equal core.dead 1
@@ -486,118 +487,118 @@ print "\nLogic by [#83]AlphaGamer[]"
 print postMessage
 printflush message1
 ubind u1
-jump 503 equal @unit null
+jump 504 equal @unit null
 sensor flag @unit @flag
-jump 494 equal flag f1
+jump 495 equal flag f1
 sensor ctrl @unit @controller
-jump 502 notEqual ctrl @this
-jump 502 notEqual flag 0
+jump 503 notEqual ctrl @this
+jump 503 notEqual flag 0
 ucontrol flag 0 0 0 0 0
 ulocate building core false _ coreX coreY _ core
 ucontrol pathfind coreX coreY 0 0 0
 ucontrol itemDrop core 999 0 0 0
 ucontrol within coreX coreY 4 isNearCore 0
-jump 503 equal isNearCore 0
+jump 504 equal isNearCore 0
 ucontrol itemDrop @air 999 0 0 0
 ucontrol unbind 0 0 0 0 0
 set u1 null
 ubind u2
-jump 519 equal @unit null
+jump 520 equal @unit null
 sensor flag @unit @flag
-jump 510 equal flag f2
+jump 511 equal flag f2
 sensor ctrl @unit @controller
-jump 518 notEqual ctrl @this
-jump 518 notEqual flag 0
+jump 519 notEqual ctrl @this
+jump 519 notEqual flag 0
 ucontrol flag 0 0 0 0 0
 ulocate building core false _ coreX coreY _ core
 ucontrol pathfind coreX coreY 0 0 0
 ucontrol itemDrop core 999 0 0 0
 ucontrol within coreX coreY 4 isNearCore 0
-jump 519 equal isNearCore 0
+jump 520 equal isNearCore 0
 ucontrol itemDrop @air 999 0 0 0
 ucontrol unbind 0 0 0 0 0
 set u2 null
 ubind u3
-jump 535 equal @unit null
+jump 536 equal @unit null
 sensor flag @unit @flag
-jump 526 equal flag f3
+jump 527 equal flag f3
 sensor ctrl @unit @controller
-jump 534 notEqual ctrl @this
-jump 534 notEqual flag 0
+jump 535 notEqual ctrl @this
+jump 535 notEqual flag 0
 ucontrol flag 0 0 0 0 0
 ulocate building core false _ coreX coreY _ core
 ucontrol pathfind coreX coreY 0 0 0
 ucontrol itemDrop core 999 0 0 0
 ucontrol within coreX coreY 4 isNearCore 0
-jump 535 equal isNearCore 0
+jump 536 equal isNearCore 0
 ucontrol itemDrop @air 999 0 0 0
 ucontrol unbind 0 0 0 0 0
 set u3 null
 ubind u4
-jump 551 equal @unit null
+jump 552 equal @unit null
 sensor flag @unit @flag
-jump 542 equal flag f4
+jump 543 equal flag f4
 sensor ctrl @unit @controller
-jump 550 notEqual ctrl @this
-jump 550 notEqual flag 0
+jump 551 notEqual ctrl @this
+jump 551 notEqual flag 0
 ucontrol flag 0 0 0 0 0
 ulocate building core false _ coreX coreY _ core
 ucontrol pathfind coreX coreY 0 0 0
 ucontrol itemDrop core 999 0 0 0
 ucontrol within coreX coreY 4 isNearCore 0
-jump 551 equal isNearCore 0
+jump 552 equal isNearCore 0
 ucontrol itemDrop @air 999 0 0 0
 ucontrol unbind 0 0 0 0 0
 set u4 null
 ubind u5
-jump 567 equal @unit null
+jump 568 equal @unit null
 sensor flag @unit @flag
-jump 558 equal flag f5
+jump 559 equal flag f5
 sensor ctrl @unit @controller
-jump 566 notEqual ctrl @this
-jump 566 notEqual flag 0
+jump 567 notEqual ctrl @this
+jump 567 notEqual flag 0
 ucontrol flag 0 0 0 0 0
 ulocate building core false _ coreX coreY _ core
 ucontrol pathfind coreX coreY 0 0 0
 ucontrol itemDrop core 999 0 0 0
 ucontrol within coreX coreY 4 isNearCore 0
-jump 567 equal isNearCore 0
+jump 568 equal isNearCore 0
 ucontrol itemDrop @air 999 0 0 0
 ucontrol unbind 0 0 0 0 0
 set u5 null
 ubind u6
-jump 583 equal @unit null
+jump 584 equal @unit null
 sensor flag @unit @flag
-jump 574 equal flag f6
+jump 575 equal flag f6
 sensor ctrl @unit @controller
-jump 582 notEqual ctrl @this
-jump 582 notEqual flag 0
+jump 583 notEqual ctrl @this
+jump 583 notEqual flag 0
 ucontrol flag 0 0 0 0 0
 ulocate building core false _ coreX coreY _ core
 ucontrol pathfind coreX coreY 0 0 0
 ucontrol itemDrop core 999 0 0 0
 ucontrol within coreX coreY 4 isNearCore 0
-jump 583 equal isNearCore 0
+jump 584 equal isNearCore 0
 ucontrol itemDrop @air 999 0 0 0
 ucontrol unbind 0 0 0 0 0
 set u6 null
 ubind u7
-jump 599 equal @unit null
+jump 600 equal @unit null
 sensor flag @unit @flag
-jump 590 equal flag f7
+jump 591 equal flag f7
 sensor ctrl @unit @controller
-jump 598 notEqual ctrl @this
-jump 598 notEqual flag 0
+jump 599 notEqual ctrl @this
+jump 599 notEqual flag 0
 ucontrol flag 0 0 0 0 0
 ulocate building core false _ coreX coreY _ core
 ucontrol pathfind coreX coreY 0 0 0
 ucontrol itemDrop core 999 0 0 0
 ucontrol within coreX coreY 4 isNearCore 0
-jump 599 equal isNearCore 0
+jump 600 equal isNearCore 0
 ucontrol itemDrop @air 999 0 0 0
 ucontrol unbind 0 0 0 0 0
 set u7 null
-jump 604 always 0 0
+jump 605 always 0 0
 print "custom code field."
 print "Can be used to aim turrets, toggle projectors, or something else"
 print "[red]prohibed: stop, end, wait"
